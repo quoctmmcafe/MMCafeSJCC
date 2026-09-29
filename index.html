@@ -2,8 +2,8 @@
 <html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Menu</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,11 +18,13 @@
 
   <script>
     tailwind.config = {
-      darkMode: 'media',
       theme: {
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            darkbg: '#121212',
           }
         }
       }
@@ -30,272 +32,102 @@
   </script>
 
   <style>
-    /* Prevent body scrolling for smooth canvas drag/pan */
+    /* Prevent body scrolling for a modern web-app feel */
     html, body {
       height: 100%;
       overflow: hidden;
-      touch-action: none;
-    }
-    
-    .viewport {
-      cursor: grab;
-      user-select: none;
-    }
-    
-    .viewport:active {
-      cursor: grabbing;
-    }
-
-    .menu-img {
-      transition: transform 0.05s linear;
-      transform-origin: 0 0;
-      will-change: transform;
+      background-color: #121212;
     }
   </style>
 </head>
-<body class="bg-neutral-100 text-neutral-800 dark:bg-neutral-950 dark:text-neutral-100 font-sans h-full flex flex-col antialiased selection:bg-neutral-300 dark:selection:bg-neutral-800">
+<body class="bg-darkbg text-neutral-100 font-sans h-full flex flex-col antialiased selection:bg-neutral-800">
 
   <!-- Top Floating Controls Header -->
   <header class="fixed top-0 left-0 right-0 z-50 p-3 sm:p-4 flex items-center justify-between pointer-events-none">
     
     <!-- Title / Brand Badge -->
-    <div class="pointer-events-auto bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-neutral-200/80 dark:border-neutral-800 shadow-sm flex items-center gap-2">
+    <div class="pointer-events-auto bg-neutral-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 shadow-xl flex items-center gap-2.5">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <h1 class="text-xs font-semibold tracking-wide uppercase text-neutral-700 dark:text-neutral-300">Menu</h1>
+      <h1 class="text-xs sm:text-sm font-semibold tracking-wide uppercase text-neutral-200">Our Menu</h1>
     </div>
 
     <!-- Quick Actions Toolbar -->
-    <div class="pointer-events-auto flex items-center gap-1.5 sm:gap-2 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md p-1.5 rounded-full border border-neutral-200/80 dark:border-neutral-800 shadow-sm">
+    <div class="pointer-events-auto flex items-center gap-1.5 sm:gap-2 bg-neutral-900/90 backdrop-blur-md p-1.5 rounded-full border border-neutral-800 shadow-xl">
       
-      <!-- Zoom Out -->
-      <button onclick="zoomBy(-0.2)" title="Zoom Out" class="w-8 h-8 rounded-full hover:bg-neutral-200/60 dark:hover:bg-neutral-800 flex items-center justify-center text-xs text-neutral-700 dark:text-neutral-300 transition-colors">
-        <i class="fa-solid fa-minus"></i>
+      <!-- Open in New Tab -->
+      <a href="menu.pdf" target="_blank" title="Open PDF in New Tab" class="px-3 h-8 rounded-full hover:bg-neutral-800 flex items-center justify-center gap-1.5 text-xs text-neutral-300 transition-colors">
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        <span class="hidden sm:inline">Open</span>
+      </a>
+
+      <!-- Print Button -->
+      <button onclick="printPDF()" title="Print Menu" class="w-8 h-8 rounded-full hover:bg-neutral-800 flex items-center justify-center text-xs text-neutral-300 transition-colors">
+        <i class="fa-solid fa-print"></i>
       </button>
 
-      <!-- Reset -->
-      <button onclick="resetZoom()" id="zoomPercent" title="Reset Scale" class="px-2 h-8 rounded-full hover:bg-neutral-200/60 dark:hover:bg-neutral-800 flex items-center justify-center text-xs font-mono font-medium text-neutral-600 dark:text-neutral-400 transition-colors">
-        100%
-      </button>
+      <div class="w-px h-4 bg-neutral-800 my-auto"></div>
 
-      <!-- Zoom In -->
-      <button onclick="zoomBy(0.2)" title="Zoom In" class="w-8 h-8 rounded-full hover:bg-neutral-200/60 dark:hover:bg-neutral-800 flex items-center justify-center text-xs text-neutral-700 dark:text-neutral-300 transition-colors">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-
-      <div class="w-px h-4 bg-neutral-200 dark:bg-neutral-800 my-auto"></div>
-
-      <!-- Fit to Screen -->
-      <button onclick="fitToScreen()" title="Fit to Viewport" class="w-8 h-8 rounded-full hover:bg-neutral-200/60 dark:hover:bg-neutral-800 flex items-center justify-center text-xs text-neutral-700 dark:text-neutral-300 transition-colors">
-        <i class="fa-solid fa-expand"></i>
-      </button>
-
-      <!-- Fullscreen Toggle -->
-      <button onclick="toggleFullscreen()" title="Toggle Fullscreen" class="w-8 h-8 rounded-full hover:bg-neutral-200/60 dark:hover:bg-neutral-800 flex items-center justify-center text-xs text-neutral-700 dark:text-neutral-300 transition-colors">
-        <i class="fa-solid fa-maximize" id="fullscreenIcon"></i>
-      </button>
-
-      <!-- Direct PDF Link / Download -->
-      <a href="menu.pdf" target="_blank" download="menu.pdf" title="Open Raw pdf" class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 flex items-center justify-center text-xs hover:opacity-90 transition-opacity">
-        <i class="fa-solid fa-arrow-down-long"></i>
+      <!-- Download PDF Button -->
+      <a href="menu.pdf" download="menu.pdf" title="Download PDF Menu" class="px-3.5 h-8 rounded-full bg-neutral-100 text-neutral-900 flex items-center justify-center gap-2 text-xs font-medium hover:bg-white transition-colors">
+        <i class="fa-solid fa-download text-[11px]"></i>
+        <span>Download</span>
       </a>
     </div>
   </header>
 
-  <!-- Interactive Viewport Container -->
-  <main id="viewport" class="viewport flex-1 w-full h-full relative overflow-hidden bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center">
+  <!-- Interactive PDF Viewport Container -->
+  <main class="flex-1 w-full h-full relative pt-16 sm:pt-20 pb-4 px-2 sm:px-4 flex flex-col items-center justify-center">
     
-    <!-- Target Menu Image -->
-    <img id="menuImage" 
-         src="menu.pdf" 
-         alt="Restaurant Menu" 
-         class="menu-img absolute max-w-none shadow-2xl rounded-sm"
-         onerror="handleImageError(this)"
-    >
+    <!-- Embedded PDF Container -->
+    <div class="w-full h-full max-w-6xl bg-neutral-900/50 rounded-2xl border border-neutral-800/80 shadow-2xl overflow-hidden relative">
+      <object
+        data="menu.pdf#toolbar=0&navpanes=0&scrollbar=1"
+        type="application/pdf"
+        class="w-full h-full border-none"
+      >
+        <!-- Mobile/Unsupported Browser Fallback Embed -->
+        <embed 
+          src="menu.pdf#toolbar=0&navpanes=0" 
+          type="application/pdf" 
+          class="w-full h-full border-none"
+        />
 
-    <!-- Fallback Card (Visible if menu.pdf fails to load) -->
-    <div id="fallbackCard" class="hidden z-10 max-w-sm w-full mx-4 p-6 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-xl text-center space-y-4">
-      <div class="w-12 h-12 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 flex items-center justify-center mx-auto text-lg">
-        <i class="fa-solid fa-image"></i>
-      </div>
-      <div>
-        <h2 class="text-sm font-semibold text-neutral-900 dark:text-neutral-100">`menu.pdf` Not Found</h2>
-        <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-          Place your menu image named <code class="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-800 dark:text-neutral-200">menu.pdf</code> in the root folder of this repository.
-        </p>
-      </div>
-      <button onclick="loadSampleImage()" class="w-full py-2 px-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 text-xs font-medium transition-colors">
-        Load Sample Menu Demo
-      </button>
+        <!-- Fallback UI when PDF inline viewer is blocked or unavailable -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center space-y-4 bg-neutral-900">
+          <div class="w-14 h-14 rounded-full bg-neutral-800 text-neutral-300 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+          <div class="max-w-md">
+            <h2 class="text-base font-semibold text-neutral-100">View Menu Document</h2>
+            <p class="text-xs text-neutral-400 mt-1 leading-relaxed">
+              Your browser or device does not support inline PDF previews. You can easily open or download the menu directly below.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center gap-2 pt-2">
+            <a href="menu.pdf" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-medium transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              Open PDF in New Tab
+            </a>
+            <a href="menu.pdf" download="menu.pdf" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-neutral-100 hover:bg-white text-neutral-900 text-xs font-medium transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-download text-[10px]"></i>
+              Download PDF Menu
+            </a>
+          </div>
+        </div>
+      </object>
     </div>
 
   </main>
 
   <script>
-    // State management
-    let scale = 1;
-    let panX = 0;
-    let panY = 0;
-    let isDragging = false;
-    let startX = 0, startY = 0;
-
-    // Multi-touch tracking
-    let initialPinchDistance = null;
-    let initialScale = 1;
-
-    const viewport = document.getElementById('viewport');
-    const img = document.getElementById('menuImage');
-    const zoomText = document.getElementById('zoomPercent');
-
-    window.addEventListener('load', () => {
-      if (img.complete && img.naturalWidth !== 0) {
-        fitToScreen();
-      }
-    });
-
-    img.addEventListener('load', () => {
-      fitToScreen();
-    });
-
-    function updateTransform() {
-      img.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
-      zoomText.textContent = `${Math.round(scale * 100)}%`;
-    }
-
-    function fitToScreen() {
-      if (!img.naturalWidth) return;
-      
-      const vWidth = viewport.clientWidth;
-      const vHeight = viewport.clientHeight;
-      const imgWidth = img.naturalWidth;
-      const imgHeight = img.naturalHeight;
-
-      const scaleX = (vWidth - 32) / imgWidth;
-      const scaleY = (vHeight - 80) / imgHeight;
-      
-      scale = Math.min(scaleX, scaleY, 1); // Fit within margins, max 100%
-      
-      // Center image
-      panX = (vWidth - imgWidth * scale) / 2;
-      panY = (vHeight - imgHeight * scale) / 2;
-
-      updateTransform();
-    }
-
-    function zoomBy(delta) {
-      const newScale = Math.min(Math.max(scale + delta, 0.2), 4);
-      
-      // Zoom towards center of viewport
-      const vWidth = viewport.clientWidth;
-      const vHeight = viewport.clientHeight;
-      const centerX = vWidth / 2;
-      const centerY = vHeight / 2;
-
-      panX = centerX - (centerX - panX) * (newScale / scale);
-      panY = centerY - (centerY - panY) * (newScale / scale);
-      
-      scale = newScale;
-      updateTransform();
-    }
-
-    function resetZoom() {
-      fitToScreen();
-    }
-
-    // Mouse Drag Panning
-    viewport.addEventListener('mousedown', (e) => {
-      if (e.target.closest('header')) return;
-      isDragging = true;
-      startX = e.clientX - panX;
-      startY = e.clientY - panY;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      panX = e.clientX - startX;
-      panY = e.clientY - startY;
-      updateTransform();
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    // Mouse Wheel Zoom
-    viewport.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const zoomFactor = e.deltaY < 0 ? 0.1 : -0.1;
-      
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-
-      const newScale = Math.min(Math.max(scale + zoomFactor, 0.2), 4);
-      
-      panX = mouseX - (mouseX - panX) * (newScale / scale);
-      panY = mouseY - (mouseY - panY) * (newScale / scale);
-      
-      scale = newScale;
-      updateTransform();
-    }, { passive: false });
-
-    // Touch & Pinch-to-Zoom Support
-    viewport.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        isDragging = true;
-        startX = e.touches[0].clientX - panX;
-        startY = e.touches[0].clientY - panY;
-      } else if (e.touches.length === 2) {
-        isDragging = false;
-        initialPinchDistance = getDistance(e.touches[0], e.touches[1]);
-        initialScale = scale;
-      }
-    });
-
-    viewport.addEventListener('touchmove', (e) => {
-      if (isDragging && e.touches.length === 1) {
-        panX = e.touches[0].clientX - startX;
-        panY = e.touches[0].clientY - startY;
-        updateTransform();
-      } else if (e.touches.length === 2 && initialPinchDistance) {
-        const currentDistance = getDistance(e.touches[0], e.touches[1]);
-        const factor = currentDistance / initialPinchDistance;
-        scale = Math.min(Math.max(initialScale * factor, 0.2), 4);
-        updateTransform();
-      }
-    }, { passive: true });
-
-    viewport.addEventListener('touchend', () => {
-      isDragging = false;
-      initialPinchDistance = null;
-    });
-
-    function getDistance(t1, t2) {
-      const dx = t1.clientX - t2.clientX;
-      const dy = t1.clientY - t2.clientY;
-      return Math.sqrt(dx * dx + dy * dy);
-    }
-
-    // Fullscreen Handler
-    function toggleFullscreen() {
-      const icon = document.getElementById('fullscreenIcon');
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-        icon.className = 'fa-solid fa-minimize';
-      } else {
-        document.exitFullscreen().catch(() => {});
-        icon.className = 'fa-solid fa-maximize';
-      }
-    }
-
-    // Fallback Image handling
-    function handleImageError(image) {
-      image.classList.add('hidden');
-      document.getElementById('fallbackCard').classList.remove('hidden');
-    }
-
-    function loadSampleImage() {
-      document.getElementById('fallbackCard').classList.add('hidden');
-      img.classList.remove('hidden');
-      img.src = "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop";
+    // Function to trigger PDF printing using a hidden iframe
+    function printPDF() {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'menu.pdf';
+      document.body.appendChild(iframe);
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
     }
   </script>
 </body>
