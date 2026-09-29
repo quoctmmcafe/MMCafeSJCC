@@ -1,1 +1,309 @@
-# MMCafeSJCC
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-200">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">NexusTemplate</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#hero" class="text-brand-600 dark:text-brand-500 hover:text-brand-700 transition">Home</a>
+                    <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-500 transition">Features</a>
+                    <a href="#interactive" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-500 transition">Interactive Demo</a>
+                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-500 transition">About</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition" aria-label="Toggle Theme">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                    <a href="#interactive" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-brand-600 rounded-lg hover:bg-brand-700 shadow-sm transition">
+                        Get Started
+                    </a>
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 pt-2 pb-4 space-y-2">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-brand-600 dark:text-brand-500 bg-gray-50 dark:bg-gray-800">Home</a>
+            <a href="#features" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Features</a>
+            <a href="#interactive" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Interactive Demo</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">About</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-600 dark:bg-brand-900/30 dark:text-brand-500 mb-6 border border-brand-100 dark:border-brand-800/50">
+                    <i class="fa-solid fa-sparkles mr-1.5"></i> Modern Web Template v1.0
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                    Build Faster with Clean & <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-500">Responsive Components</span>
+                </h1>
+                <p class="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                    A sleek, production-ready starting point featuring Tailwind CSS, dynamic interactive widgets, and seamless dark mode support.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#interactive" class="inline-flex items-center justify-center px-6 py-3.5 border border-transparent text-base font-medium rounded-xl text-white bg-brand-600 hover:bg-brand-700 shadow-md transition">
+                        Explore Widgets <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="#features" class="inline-flex items-center justify-center px-6 py-3.5 border border-gray-300 dark:border-gray-700 text-base font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm transition">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid Section -->
+    <section id="features" class="py-16 bg-white dark:bg-gray-800/50 border-y border-gray-200/60 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Core Capabilities</h2>
+                <p class="mt-3 text-gray-600 dark:text-gray-400">Everything you need to launch a high-performing web layout quickly.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700/60 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-500 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Fully Responsive</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Designed ground-up to look stunning on mobile phones, tablets, laptops, and wide desktop displays.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700/60 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dark Mode Built-in</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Seamlessly switch between light and dark visual themes with a single click, persistent state included.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700/60 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Interactive Widgets</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Includes functional counters, state tabs, and dynamically updateable content blocks out-of-the-box.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Widgets Section -->
+    <section id="interactive" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Interactive Playground</h2>
+                <p class="mt-3 text-gray-600 dark:text-gray-400">Test the client-side JavaScript components built into this template.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Widget 1: Counter -->
+                <div class="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Stateful Counter</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">Widget 01</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">Increment, decrement, or clear the value using client-side JavaScript state.</p>
+                    </div>
+
+                    <div class="text-center my-6">
+                        <span id="counterValue" class="text-6xl font-extrabold text-brand-600 dark:text-brand-500">0</span>
+                    </div>
+
+                    <div class="flex justify-center gap-3">
+                        <button onclick="updateCounter(-1)" class="px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-semibold transition">
+                            <i class="fa-solid fa-minus"></i> Decrement
+                        </button>
+                        <button onclick="updateCounter(0, true)" class="px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-semibold transition">
+                            Reset
+                        </button>
+                        <button onclick="updateCounter(1)" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-sm transition">
+                            <i class="fa-solid fa-plus"></i> Increment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Widget 2: Tabbed Content Switcher -->
+                <div class="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Dynamic Content Tabs</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">Widget 02</span>
+                        </div>
+                        
+                        <!-- Tab Controls -->
+                        <div class="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+                            <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2 font-medium text-sm text-brand-600 border-b-2 border-brand-600">Overview</button>
+                            <button onclick="switchTab('specs')" id="tab-specs" class="tab-btn px-4 py-2 font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">Specifications</button>
+                            <button onclick="switchTab('notes')" id="tab-notes" class="tab-btn px-4 py-2 font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">Notes</button>
+                        </div>
+
+                        <!-- Tab Contents -->
+                        <div id="content-overview" class="tab-content text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                            <p>This single-page layout demonstrates dynamic DOM switching without requiring page reloads or heavy external framework dependencies.</p>
+                        </div>
+                        <div id="content-specs" class="tab-content hidden text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Styling: Tailwind CSS v3 via CDN</li>
+                                <li>Icons: FontAwesome 6.4</li>
+                                <li>Font: Inter (Google Fonts)</li>
+                                <li>Dependencies: Zero runtime JS frameworks</li>
+                            </ul>
+                        </div>
+                        <div id="content-notes" class="tab-content hidden text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                            <p>You can easily copy this complete code block directly into an `index.html` file and run it directly inside any browser.</p>
+                        </div>
+                    </div>
+
+                    <div id="feedbackMessage" class="mt-6 p-3 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-xs font-medium text-center">
+                        Active View: <span id="activeTabLabel" class="font-bold">Overview</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <span class="font-bold text-gray-900 dark:text-white">NexusTemplate</span>
+                </div>
+                
+                <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
+                    &copy; <span id="year"></span> NexusTemplate. Built with modern HTML & Tailwind CSS.
+                </p>
+
+                <div class="flex space-x-4 text-gray-400">
+                    <a href="#" class="hover:text-brand-600 transition"><i class="fa-brands fa-github text-lg"></i></a>
+                    <a href="#" class="hover:text-brand-600 transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                    <a href="#" class="hover:text-brand-600 transition"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Scripts -->
+    <script>
+        // Initialize dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark Mode Toggle Logic
+        function toggleDarkMode() {
+            const htmlTag = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (htmlTag.classList.contains('dark')) {
+                htmlTag.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                htmlTag.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        }
+
+        // Mobile Menu Toggle Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Interactive Counter Logic
+        let count = 0;
+        function updateCounter(amount, reset = false) {
+            if (reset) {
+                count = 0;
+            } else {
+                count += amount;
+            }
+            document.getElementById('counterValue').textContent = count;
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // Reset tab button active styles
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.className = 'tab-btn px-4 py-2 font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200';
+            });
+
+            // Show current tab content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // Set current active button style
+            const activeTab = document.getElementById('tab-' + tabId);
+            activeTab.className = 'tab-btn px-4 py-2 font-medium text-sm text-brand-600 border-b-2 border-brand-600 dark:text-brand-500 dark:border-brand-500';
+
+            // Update footer indicator
+            document.getElementById('activeTabLabel').textContent = tabId.charAt(0).toUpperCase() + tabId.slice(1);
+        }
+    </script>
+</body>
+</html>
