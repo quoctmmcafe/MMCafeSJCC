@@ -94,8 +94,8 @@
         <i class="fa-solid fa-maximize" id="fullscreenIcon"></i>
       </button>
 
-      <!-- Direct JPG Link / Download -->
-      <a href="menu.jpg" target="_blank" download="menu.jpg" title="Open Raw JPG" class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 flex items-center justify-center text-xs hover:opacity-90 transition-opacity">
+      <!-- Direct PDF Link / Download -->
+      <a href="menu.pdf" target="_blank" download="menu.pdf" title="Open Raw pdf" class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 flex items-center justify-center text-xs hover:opacity-90 transition-opacity">
         <i class="fa-solid fa-arrow-down-long"></i>
       </a>
     </div>
@@ -106,21 +106,21 @@
     
     <!-- Target Menu Image -->
     <img id="menuImage" 
-         src="menu.jpg" 
+         src="menu.pdf" 
          alt="Restaurant Menu" 
          class="menu-img absolute max-w-none shadow-2xl rounded-sm"
          onerror="handleImageError(this)"
     >
 
-    <!-- Fallback Card (Visible if menu.jpg fails to load) -->
+    <!-- Fallback Card (Visible if menu.pdf fails to load) -->
     <div id="fallbackCard" class="hidden z-10 max-w-sm w-full mx-4 p-6 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-xl text-center space-y-4">
       <div class="w-12 h-12 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 flex items-center justify-center mx-auto text-lg">
         <i class="fa-solid fa-image"></i>
       </div>
       <div>
-        <h2 class="text-sm font-semibold text-neutral-900 dark:text-neutral-100">`menu.jpg` Not Found</h2>
+        <h2 class="text-sm font-semibold text-neutral-900 dark:text-neutral-100">`menu.pdf` Not Found</h2>
         <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-          Place your menu image named <code class="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-800 dark:text-neutral-200">menu.jpg</code> in the root folder of this repository.
+          Place your menu image named <code class="bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-neutral-800 dark:text-neutral-200">menu.pdf</code> in the root folder of this repository.
         </p>
       </div>
       <button onclick="loadSampleImage()" class="w-full py-2 px-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 text-xs font-medium transition-colors">
